@@ -1,0 +1,67 @@
+project:
+  name: "BlurImageProcessor"
+  version: "1.0.0"
+  description: "模糊图像处理与分析系统"
+
+detection:
+  laplacian:
+    threshold: 100.0
+    kernel_size: 3
+  
+  fft:
+    high_freq_ratio: 0.3
+    threshold: 0.1
+  
+  gradient:
+    threshold: 50.0
+    sobel_kernel: 3
+
+deblur:
+  wiener:
+    balance: 0.1
+    psf_size: 5
+  
+  richardson_lucy:
+    iterations: 30
+    psf_size: 5
+  
+  blind_deconv:
+    iterations: 50
+    psf_size: 7
+  
+  unsharp_mask:
+    sigma: 1.0
+    strength: 1.5
+
+enhancement:
+  sharpening:
+    kernel_size: 3
+    amount: 1.5
+  
+  contrast:
+    alpha: 1.2
+    beta: 10
+  
+  noise_reduction:
+    method: "gaussian"
+    kernel_size: 3
+
+analysis:
+  quality_metrics:
+    use_psnr: true
+    use_ssim: true
+    use_mse: true
+  
+  blur_kernel:
+    estimation_method: "auto"
+    max_kernel_size: 15
+
+io:
+  input_formats: [".jpg", ".jpeg", ".png", ".bmp", ".tiff"]
+  output_format: ".png"
+  output_quality: 95
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "blur_processor.log"
